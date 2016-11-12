@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Camp</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/js/camp.js"></script>
+<body>
+    <div ng-app="campApp" ng-controller="campCtrl">
+        <table>
+            <tr ng-repeat="building in buildings">
+                <td><a ng-href="/enterBuilding/{{building.id}}">{{building.buildingType}}</a></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
