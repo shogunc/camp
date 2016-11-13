@@ -1,4 +1,6 @@
-package com.karlsek.mercenarycamp.model.building;
+package com.karlsek.mercenarycamp.model.building.recruitmentpost;
+
+import com.karlsek.mercenarycamp.model.building.Building;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;

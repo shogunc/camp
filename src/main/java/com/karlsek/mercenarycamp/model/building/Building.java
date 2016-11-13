@@ -3,6 +3,7 @@ package com.karlsek.mercenarycamp.model.building;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.karlsek.mercenarycamp.model.building.recruitmentpost.RecruitmentPost;
 import com.karlsek.mercenarycamp.model.unit.Unit;
 
 import javax.persistence.*;
