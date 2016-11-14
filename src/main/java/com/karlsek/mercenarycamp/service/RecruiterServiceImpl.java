@@ -3,6 +3,8 @@ package com.karlsek.mercenarycamp.service;
 import com.karlsek.mercenarycamp.dao.RecruiterDao;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.Recruiter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
@@ -13,8 +15,10 @@ import java.util.Date;
 @Service
 public class RecruiterServiceImpl implements RecruiterService {
 
-    private static final Long RECRUITMENT_TIME = 15 * 1000l;
-    private static final Long RECRUITMENT_COOLDOWN = 3 * 60 * 1000l;
+    @Value("${recruitment.time}")
+    private Long RECRUITMENT_TIME;
+    @Value("${recruitment.cooldown}")
+    private Long RECRUITMENT_COOLDOWN;
 
     @Autowired
     private RecruiterDao recruiterDao;
