@@ -12,4 +12,4 @@ INSERT INTO Unit_Tile(unit_id, tile_id) VALUES (1, 'BLOOD');
 INSERT INTO Unit_Tile(unit_id, tile_id) VALUES (1, 'BLOOD2');
 INSERT INTO Unit_Tile(unit_id, tile_id) VALUES (1, 'SURGE_STAR');
 
-INSERT INTO Recruiter(id) VALUES (1);
+INSERT INTO Recruiter(id, status) VALUES (1, 'AVAILABLE');

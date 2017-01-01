@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/js/recruitment_post.js"></script>
-<body>
-    Welcome to the recruitment post!
-    Here you can recruit new troops.
-    <div ng-app="recruitmentPostApp" ng-controller="recruitmentPostCtrl">
-        <table>
-            <tr ng-repeat="recruiter in recruiters">
-                <td>{{recruiter.id}}</td>
-                <td>{{recruiter.onRecruitmentUntil}}</td>
-                <td>{{recruiter.unavailableUntil}}</td>
-                <td><a href ng-click="sendOnRecruitment()">Rekrytera</a></td>
-            </tr>
-        </table>
-    </div>
-    <a href="/">Go back</a>
-</body>
-</html>
+Welcome to the recruitment post!
+Here you can recruit new troops.
+<table>
+    <tr ng-repeat="recruiter in recruiters">
+        <td ng-bind="recruiter.id" />
+        <td ng-bind="recruiter.statusMsg" />
+        <td bind-html-compile="recruiter.action" />
+    </tr>
+</table>
+<a href="#/">Go back</a>

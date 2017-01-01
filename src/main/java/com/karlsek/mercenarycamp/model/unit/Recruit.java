@@ -25,7 +25,8 @@ public class Recruit extends Unit {
     private Recruit(Builder builder) {
         name = builder.name;
         level = 1;
-//        tiles = Arrays.asList(Tile.ATTACK, Tile.ATTACK_STAR, Tile.ATTACK_STAR, Tile.SURGE_STAR, Tile.BLOOD, Tile.BLOOD, Tile.BLOOD2);
+        this.unitType = "RECRUIT";
+        tiles = Arrays.asList(Tile.ATTACK, Tile.ATTACK_STAR, Tile.ATTACK_STAR, Tile.SURGE_STAR, Tile.BLOOD, Tile.BLOOD, Tile.BLOOD2);
     }
 
     public Recruit() {

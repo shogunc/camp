@@ -8,6 +8,8 @@ public interface RecruiterService {
 
     Collection<Recruiter> findAll();
 
+    Recruiter findOne(Long id);
+
     Recruiter sendOnRecruitment(Long id);
 
     Recruiter create(Recruiter recruiter);

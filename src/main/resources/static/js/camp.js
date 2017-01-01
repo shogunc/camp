@@ -1,5 +1,4 @@
-var app = angular.module('campApp', []);
-app.controller('campCtrl', function($scope){
+app.controller('campCtrl', function($scope, campService){
     $scope.buildings = [];
 
     $scope.getBuildings = function() {
@@ -9,11 +8,16 @@ app.controller('campCtrl', function($scope){
             $scope.buildings = data;
             $scope.$apply()
         })
-    }
+    };
+
+    $scope.goToBuilding = function(building) {
+        campService.set(building);
+        window.location.href = '#/' + building.buildingType.toLowerCase();
+    };
 
     $scope.init = function () {
         $scope.getBuildings();
-    }
+    };
 
     $scope.init();
 });

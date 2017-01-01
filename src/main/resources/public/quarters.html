@@ -1,24 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/js/quarters.js"></script>
-<body>
-    <p>Welcome to the quarters!</p>
-    <p>Here you can inspect your troops.</p>
-    <div ng-app="quartersApp" ng-controller="quartersCtrl">
-        <table>
-            <tr ng-repeat="unit in units">
-                <td>{{unit.name}}</td>
-                <td>{{unit.level}}</td>
-            </tr>
-        </table>
-    </div>
-
-    <a href="/">Go back</a>
-</body>
-</html>
+<p>Welcome to the quarters!</p>
+<p>Here you can inspect your troops.</p>
+<table>
+    <tr ng-repeat="unit in units">
+        <td>{{unit.name}}</td>
+        <td>{{unit.level}}</td>
+    </tr>
+</table>
+<a href="#/">Go back</a>

@@ -4,16 +4,16 @@
     <meta charset="UTF-8" />
     <title>Camp</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="/js/angular-bind-html-compile.min.js"></script>
+<script src="/js/main.js"></script>
 <script src="/js/camp.js"></script>
-<body>
-    <div ng-app="campApp" ng-controller="campCtrl">
-        <table>
-            <tr ng-repeat="building in buildings">
-                <td><a ng-href="/enterBuilding/{{building.id}}">{{building.buildingType}}</a></td>
-            </tr>
-        </table>
-    </div>
+<script src="/js/quarters.js"></script>
+<script src="/js/recruitment_post.js"></script>
+<body ng-app="campApp">
+    <div ng-view></div>
 </body>
 </html>

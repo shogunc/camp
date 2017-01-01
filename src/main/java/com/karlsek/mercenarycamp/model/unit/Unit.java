@@ -19,20 +19,20 @@ import java.util.List;
 })
 public abstract class Unit {
 
-    public static final int MAX_LEVEL = 10;
+    private static final int MAX_LEVEL = 10;
 
     @Id
     @GeneratedValue
     private Long id;
     @Column(name = "unit_type", insertable = false, updatable = false)
-    private String unitType;
-    protected String name;
-    protected int level;
+    String unitType;
+    String name;
+    int level;
     @ElementCollection(targetClass = Tile.class)
     @CollectionTable(name = "Unit_Tile", joinColumns = @JoinColumn(name = "unit_id"))
     @Column(name = "tile_id")
     @Enumerated(EnumType.STRING)
-    protected List<Tile> tiles;
+    List<Tile> tiles;
     @ManyToOne
     @JoinColumn(name = "fk_building_id")
     @JsonIgnore
