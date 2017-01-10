@@ -1,9 +1,12 @@
-<p>Welcome to the quarters!</p>
-<p>Here you can inspect your troops.</p>
-<table>
-    <tr ng-repeat="unit in units">
-        <td>{{unit.name}}</td>
-        <td>{{unit.level}}</td>
-    </tr>
-</table>
-<a href="#/">Go back</a>
+<script src="../js/quarters.js"></script>
+<div ng-controller="quartersCtrl">
+    <p>Welcome to the quarters!</p>
+    <p>Here you can inspect your troops.</p>
+    <table>
+        <tr ng-repeat="unit in units">
+            <td>{{unit.name}}</td>
+            <td>{{unit.level}}</td>
+        </tr>
+    </table>
+    <a href="#/">Go back</a>
+</div>

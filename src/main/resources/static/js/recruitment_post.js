@@ -1,4 +1,4 @@
-app.controller('recruitmentPostCtrl', function($scope, $filter, $timeout, $interval, $sce, campService){
+app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $interval, $sce, campService){
     $scope.recruiters = [];
     /*
      Interval function that continually updates the status of the recruiters, 
@@ -88,7 +88,7 @@ app.controller('recruitmentPostCtrl', function($scope, $filter, $timeout, $inter
     $scope.init();
 });
 
-app.controller('inspectRecruitsCtrl', function($scope, campService){
+app.registerCtrl('inspectRecruitsCtrl', function($scope, campService){
     $scope.recruits = [];
 
     $scope.getRecruitedUnits = function() {

@@ -1,10 +1,13 @@
-Welcome to the recruitment post!
-Here you can recruit new troops.
-<table>
-    <tr ng-repeat="recruiter in recruiters">
-        <td ng-bind="recruiter.id" />
-        <td ng-bind="recruiter.statusMsg" />
-        <td bind-html-compile="recruiter.action" />
-    </tr>
-</table>
-<a href="#/">Go back</a>
+<script src="../js/recruitment_post.js"></script>
+<div ng-controller="recruitmentPostCtrl">
+    Welcome to the recruitment post!
+    Here you can recruit new troops.
+    <table>
+        <tr ng-repeat="recruiter in recruiters">
+            <td ng-bind="recruiter.id"></td>
+            <td ng-bind="recruiter.statusMsg"></td>
+            <td bind-html-compile="recruiter.action"></td>
+        </tr>
+    </table>
+    <a href="#/">Go back</a>
+</div>

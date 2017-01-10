@@ -1,4 +1,4 @@
-app.controller('campCtrl', function($scope, campService){
+app.registerCtrl('campCtrl', function($scope, campService){
     $scope.buildings = [];
 
     $scope.getBuildings = function() {
