@@ -1,6 +1,8 @@
 package com.karlsek.mercenarycamp.service;
 
 import com.karlsek.mercenarycamp.dao.RecruiterDao;
+import com.karlsek.mercenarycamp.error.RecruiterException;
+import com.karlsek.mercenarycamp.error.RecruiterException.REASON;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.Recruiter;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.RecruiterStatus;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.RecruiterStatusUtil;
@@ -45,14 +47,11 @@ public class RecruiterServiceImpl implements RecruiterService {
     public Recruiter sendOnRecruitment(Long id) {
         Recruiter recruiter = recruiterDao.findOne(id);
         if (recruiter == null) {
-            //TODO: #2 Create and catch error
-            return null;
+            throw new RecruiterException(REASON.UNKNOWN_ID);
         } else if (recruiter.getOnRecruitmentUntil() != null && recruiter.getOnRecruitmentUntil().after(Timestamp.from(Instant.now()))) {
-            //TODO: #2 Create and catch error
-            return null;
+            throw new RecruiterException(REASON.ON_RECRUITMENT);
         } else if (recruiter.getUnavailableUntil() != null && recruiter.getUnavailableUntil().after(Timestamp.from(Instant.now()))) {
-            //TODO: #2 Create and catch error
-            return null;
+            throw new RecruiterException(REASON.UNAVAILABLE);
         }
         Long currentDateAsLong = RecruiterStatusUtil.calculateCurrentDateAsLong();
         recruiter.setStatus(RecruiterStatus.RECRUITING);

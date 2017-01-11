@@ -1,5 +1,6 @@
 package com.karlsek.mercenarycamp.ws;
 
+import com.karlsek.mercenarycamp.error.RecruiterException;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.Recruiter;
 import com.karlsek.mercenarycamp.model.unit.Unit;
 import com.karlsek.mercenarycamp.service.RecruiterService;
@@ -27,8 +28,12 @@ public class RecruiterController {
     }
 
     @RequestMapping(value = "api/sendOnRecruitment/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Recruiter> sendOnRecruitment(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(recruiterService.sendOnRecruitment(id), HttpStatus.OK);
+    public ResponseEntity sendOnRecruitment(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(recruiterService.sendOnRecruitment(id), HttpStatus.OK);
+        } catch (RecruiterException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
     }
 
     @RequestMapping(value = "api/inspectRecruits/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
