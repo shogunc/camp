@@ -6,7 +6,10 @@
         <tr ng-repeat="recruiter in recruiters">
             <td ng-bind="recruiter.id"></td>
             <td ng-bind="recruiter.statusMsg"></td>
-            <td bind-html-compile="recruiter.action"></td>
+            <td ng-if="recruiter.calculateStatus() == 'RECRUITING'" ng-bind="recruiter.actionMsg"></td>
+            <td ng-if="recruiter.calculateStatus() == 'RECRUITS_WAITING'"><button type="button" ng-click="inspectRecruits(recruiter.id)">Inspect recruits</button></td>
+            <td ng-if="recruiter.calculateStatus() == 'UNAVAILABLE'" ng-bind="recruiter.actionMsg"></td>
+            <td ng-if="recruiter.calculateStatus() == 'AVAILABLE'"><button type="button" ng-click="sendOnRecruitment(recruiter.id)">Send on recruitment mission</button></td>
         </tr>
     </table>
     <a href="#/">Go back</a>

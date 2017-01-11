@@ -9,20 +9,16 @@ app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $int
             currentTime = new Date().getTime();
             recruiter.millisUntilRecruitmentOver = recruiter.onRecruitmentUntil - currentTime;
             recruiter.millisUntilAvailable = recruiter.unavailableUntil - currentTime;
-            if (recruiter.millisUntilRecruitmentOver > 0) {
+            if (recruiter.calculateStatus() == 'RECRUITING') {
                 recruiter.statusMsg = "Out on recruitment mission";
-                recruiter.action = Math.ceil(recruiter.millisUntilRecruitmentOver / 1000);
-            } else if (recruiter.status == 'RECRUITS_WAITING') {
+                recruiter.actionMsg = Math.ceil(recruiter.millisUntilRecruitmentOver / 1000);
+            } else if (recruiter.calculateStatus() == 'RECRUITS_WAITING') {
                 recruiter.statusMsg = "Back from recruitment mission";
-                var inspectRecruitsButton = "<button type=\"button\" ng-click=\"inspectRecruits(recruiter.id)\">Inspect recruits</button>";
-                recruiter.action = $sce.trustAsHtml(inspectRecruitsButton)
-            } else if (recruiter.millisUntilAvailable > 0) {
+            } else if (recruiter.calculateStatus() == 'UNAVAILABLE') {
                 recruiter.statusMsg = "Unavailable for recruitment mission";
-                recruiter.action = Math.ceil(recruiter.millisUntilAvailable / 1000);
+                recruiter.actionMsg = Math.ceil(recruiter.millisUntilAvailable / 1000);
             } else {
                 recruiter.statusMsg = "Available for recruitment mission";
-                var sendOnRecruitmentButton = "<button type=\"button\" ng-click=\"sendOnRecruitment(recruiter.id)\">Send on recruitment mission</button>";
-                recruiter.action = $sce.trustAsHtml(sendOnRecruitmentButton)
             }
         })
     }, 1000);
@@ -48,6 +44,14 @@ app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $int
                 recruiter.millisUntilAvailable = recruiter.unavailableUntil - currentTime;
                 if (recruiter.millisUntilAvailable > 0) {
                     $timeout($scope.getRecruiters, recruiter.millisUntilAvailable);
+                }
+                recruiter.calculateStatus = function() {
+                    if (recruiter.millisUntilRecruitmentOver > 0) {
+                        return 'RECRUITING';
+                    } else if (recruiter.status == 'RECRUITS_WAITING') {
+                        return 'RECRUITS_WAITING';
+                    } 
+                    return recruiter.millisUntilAvailable > 0 ? 'UNAVAILABLE' : 'AVAILABLE';
                 }
             })
         })

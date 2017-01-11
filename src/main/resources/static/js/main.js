@@ -1,4 +1,4 @@
-var app = angular.module('campApp', ["ngRoute", 'ngSanitize', 'angular-bind-html-compile']);
+var app = angular.module('campApp', ["ngRoute"]);
 
 app.config(['$routeProvider', '$controllerProvider',
     function($routeProvider, $controllerProvider) {
