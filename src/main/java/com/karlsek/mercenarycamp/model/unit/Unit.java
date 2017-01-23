@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.karlsek.mercenarycamp.model.building.Building;
+import com.karlsek.mercenarycamp.model.building.Quarter;
 
 import javax.persistence.*;
 import java.util.List;
@@ -37,6 +38,10 @@ public abstract class Unit {
     @JoinColumn(name = "fk_building_id")
     @JsonIgnore
     protected Building building;
+    @ManyToOne
+    @JoinColumn(name = "fk_quarter_id")
+    @JsonIgnore
+    protected Quarter assignedQuarter;
 
     public Long getId() {
         return id;

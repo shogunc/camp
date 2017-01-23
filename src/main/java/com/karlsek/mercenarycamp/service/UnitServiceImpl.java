@@ -1,6 +1,7 @@
 package com.karlsek.mercenarycamp.service;
 
 import com.karlsek.mercenarycamp.dao.UnitDao;
+import com.karlsek.mercenarycamp.model.building.Quarter;
 import com.karlsek.mercenarycamp.model.unit.Recruit;
 import com.karlsek.mercenarycamp.model.unit.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,23 +35,23 @@ public class UnitServiceImpl implements UnitService {
         List<Unit> units = new ArrayList<>();
         Unit unit1 = new Recruit.Builder()
                 .name("Martin Olofsson")
+                .assignedQuarter((Quarter)buildingService.findOne(1L))
                 .build();
-        unit1.setBuilding(buildingService.findOne(1L));
         units.add(unitDao.save(unit1));
         Unit unit2 = new Recruit.Builder()
                 .name("Anders Persson")
+                .assignedQuarter((Quarter)buildingService.findOne(1L))
                 .build();
-        unit2.setBuilding(buildingService.findOne(1L));
         units.add(unitDao.save(unit2));
         Unit unit3 = new Recruit.Builder()
                 .name("Jonas Hallman")
+                .assignedQuarter((Quarter)buildingService.findOne(1L))
                 .build();
-        unit3.setBuilding(buildingService.findOne(1L));
         units.add(unitDao.save(unit3));
         Unit unit4 = new Recruit.Builder()
                 .name("Kai Eriksson")
+                .assignedQuarter((Quarter)buildingService.findOne(1L))
                 .build();
-        unit4.setBuilding(buildingService.findOne(1L));
         units.add(unitDao.save(unit4));
         return units;
 
