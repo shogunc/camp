@@ -15,7 +15,7 @@ import java.util.Set;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY)
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Quarters.class, name = "Quarters"),
+        @JsonSubTypes.Type(value = Quarter.class, name = "Quarter"),
         @JsonSubTypes.Type(value = RecruitmentPost.class, name = "RecruitmentPost"),
         @JsonSubTypes.Type(value = NoticeBoard.class, name = "NoticeBoard")
 })

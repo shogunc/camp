@@ -4,7 +4,7 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("QUARTERS")
-public class Quarters extends Building {
+@DiscriminatorValue("QUARTER")
+public class Quarter extends Building {
 
 }

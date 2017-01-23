@@ -22,9 +22,9 @@ app.config(['$routeProvider', '$controllerProvider',
                 templateUrl : "camp.html",
                 resolve: {scripts: app.deployScripts(['js/camp.js'])}
             })
-            .when('/quarters', {
-                templateUrl : "quarters.html",
-                resolve: {scripts: app.deployScripts(['js/quarters.js'])}
+            .when('/quarter', {
+                templateUrl : "quarter.html",
+                resolve: {scripts: app.deployScripts(['js/quarter.js'])}
             })
             .when('/recruitment_post', {
                 templateUrl : "recruitment_post.html",

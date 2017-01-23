@@ -1,4 +1,4 @@
-INSERT INTO Building(building_type) VALUES ('QUARTERS');
+INSERT INTO Building(building_type) VALUES ('QUARTER');
 INSERT INTO Building(building_type) VALUES ('RECRUITMENT_POST');
 INSERT INTO Building(building_type) VALUES ('NOTICE_BOARD');
 

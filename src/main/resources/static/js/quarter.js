@@ -1,4 +1,4 @@
-app.registerCtrl('quartersCtrl', function($scope, campService){
+app.registerCtrl('quarterCtrl', function($scope, campService){
     $scope.building = {};
     $scope.units = [];
 
