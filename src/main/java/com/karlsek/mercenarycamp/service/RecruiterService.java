@@ -10,6 +10,8 @@ public interface RecruiterService {
 
     Recruiter findOne(Long id);
 
+    void updateStatusAfterInspection(Recruiter recruiter);
+
     Recruiter sendOnRecruitment(Long id);
 
     Recruiter create(Recruiter recruiter);

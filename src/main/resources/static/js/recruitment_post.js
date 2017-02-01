@@ -1,4 +1,4 @@
-app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $interval, $sce, campService){
+app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $interval, campService){
     $scope.recruiters = [];
     /*
      Interval function that continually updates the status of the recruiters, 
@@ -21,7 +21,7 @@ app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $int
                 recruiter.statusMsg = "Available for recruitment mission";
             }
         })
-    }, 1000);
+    }, 500);
 
     /*
     REST interface to retrieve all recruiters. After retrieval each recruiter is 

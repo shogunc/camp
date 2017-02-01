@@ -3,6 +3,7 @@ package com.karlsek.mercenarycamp.service;
 import com.karlsek.mercenarycamp.dao.RecruiterDao;
 import com.karlsek.mercenarycamp.error.RecruiterException;
 import com.karlsek.mercenarycamp.error.RecruiterException.REASON;
+import com.karlsek.mercenarycamp.model.building.Quarter;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.Recruiter;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.RecruiterStatus;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.RecruiterStatusUtil;
@@ -13,7 +14,11 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.lang.Math.min;
+import static java.util.Comparator.comparing;
 
 @Service
 public class RecruiterServiceImpl implements RecruiterService {
@@ -25,11 +30,13 @@ public class RecruiterServiceImpl implements RecruiterService {
 
     @Autowired
     private RecruiterDao recruiterDao;
+    @Autowired
+    private BuildingService buildingService;
 
     @Override
     public Collection<Recruiter> findAll() {
         return recruiterDao.findAll().stream()
-                .peek(this::updateStatusAndSave)
+                .peek(this::updateStatus)
                 .collect(Collectors.toList());
     }
 
@@ -38,13 +45,22 @@ public class RecruiterServiceImpl implements RecruiterService {
         return recruiterDao.findOne(id);
     }
 
-    private void updateStatusAndSave(Recruiter recruiter) {
+    private void updateStatus(Recruiter recruiter) {
         recruiter.setStatus(RecruiterStatusUtil.calculateStatus(recruiter));
         recruiterDao.save(recruiter);
     }
 
     @Override
+    public void updateStatusAfterInspection(Recruiter recruiter) {
+        recruiter.setStatus(RecruiterStatusUtil.calculateStatusAfterInspection(recruiter));
+        recruiterDao.save(recruiter);
+    }
+
+    @Override
     public Recruiter sendOnRecruitment(Long id) {
+
+        reserveSlots(id);
+
         Recruiter recruiter = recruiterDao.findOne(id);
         if (recruiter == null) {
             throw new RecruiterException(REASON.UNKNOWN_ID);
@@ -58,6 +74,21 @@ public class RecruiterServiceImpl implements RecruiterService {
         recruiter.setOnRecruitmentUntil(new Timestamp(currentDateAsLong + RECRUITMENT_TIME));
         recruiter.setUnavailableUntil(new Timestamp(currentDateAsLong + RECRUITMENT_COOLDOWN));
         return recruiterDao.save(recruiter);
+    }
+
+    private void reserveSlots(Long id) {
+        List<Quarter> quarters = buildingService.findAllQuarters().stream()
+                .sorted(comparing(Quarter::getId))
+                .collect(Collectors.toList());
+        int slotsNeeded = 4;
+        for (Quarter quarter : quarters) {
+            int slotsBeingReserved = min(quarter.getAvailableSpace(), slotsNeeded);
+            quarter.reserveSpace(id, slotsBeingReserved);
+            slotsNeeded-=slotsBeingReserved;
+            if (slotsNeeded == 0) {
+                break;
+            }
+        }
     }
 
     @Override

@@ -48,8 +48,7 @@ public class UnitController {
         if (recruiter == null || recruiter.getStatus() != RecruiterStatus.RECRUITS_WAITING) {
             return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
         }
-        recruiter.updateStatusAfterInspection();
-        return new ResponseEntity<>(unitService.recruitUnits(), HttpStatus.OK);
+        return new ResponseEntity<>(unitService.recruitUnits(recruiter), HttpStatus.OK);
     }
 
 }
