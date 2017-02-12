@@ -1,5 +1,6 @@
 app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $interval, campService){
     $scope.recruiters = [];
+    $scope.capacity = $scope.$parent.getCapacity();
     /*
      Interval function that continually updates the status of the recruiters, 
      including countdowns when applicable.
@@ -69,6 +70,7 @@ app.registerCtrl('recruitmentPostCtrl', function($scope, $filter, $timeout, $int
             $filter('filter')($scope.recruiters, {id: recruiterId})[0].onRecruitmentUntil = data.onRecruitmentUntil;
             $filter('filter')($scope.recruiters, {id: recruiterId})[0].unavailableUntil = data.unavailableUntil;
             $scope.$apply();
+            $scope.$parent.updateCapacity();
 
             currentTime = new Date().getTime();
             angular.forEach($scope.recruiters, function(recruiter) {
@@ -100,7 +102,8 @@ app.registerCtrl('inspectRecruitsCtrl', function($scope, campService){
             url: 'http://localhost:8080/api/units/recruit/' + campService.get()
         }).then(function(data) {
             $scope.recruits = data;
-            $scope.$apply()
+            $scope.$apply();
+            $scope.$parent.updateCapacity();
         })
     };
 

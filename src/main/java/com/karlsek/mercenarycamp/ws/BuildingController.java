@@ -1,6 +1,7 @@
 package com.karlsek.mercenarycamp.ws;
 
 import com.karlsek.mercenarycamp.model.building.Building;
+import com.karlsek.mercenarycamp.model.building.Capacity;
 import com.karlsek.mercenarycamp.service.BuildingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +25,11 @@ public class BuildingController {
     @RequestMapping(value = "api/building/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Building> getBuilding(@PathVariable("id") Long id) {
         return new ResponseEntity<>(buildingService.findOne(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "api/quarters/capacity", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Capacity> getCapacity() {
+        return new ResponseEntity<>(buildingService.findCapacity(), HttpStatus.OK);
     }
 
     @RequestMapping(value = "api/building", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

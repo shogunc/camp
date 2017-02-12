@@ -10,6 +10,9 @@
 <script src="/js/script.min.js"></script>
 <script src="/js/main.js"></script>
 <body ng-app="campApp">
-    <div ng-view></div>
+    <div ng-controller="FrameCtrl">
+        <strong>Units: {{totalNumberOfUnits}} Being recruited: {{totalNumberOfReservedSlots}} Capacity: {{totalNumberOfUnits + totalNumberOfReservedSlots}}/{{totalCapacity}}</strong>
+        <div ng-view></div>
+    </div>
 </body>
 </html>

@@ -1,5 +1,27 @@
 var app = angular.module('campApp', ["ngRoute"]);
 
+app.controller('FrameCtrl', function($scope) {
+    $scope.totalCapacity;
+    $scope.totalNumberOfUnits;
+    $scope.totalNumberOfReservedSlots;
+    
+    $scope.getCapacity = function() {
+        return $scope.totalCapacity - $scope.totalNumberOfUnits - $scope.totalNumberOfReservedSlots;
+    };
+
+    $scope.updateCapacity = function() {
+        $.ajax({
+            url: 'http://localhost:8080/api/quarters/capacity'
+        }).then(function(data) {
+            $scope.totalCapacity = data.totalCapacity;
+            $scope.totalNumberOfUnits = data.totalNumberOfUnits;
+            $scope.totalNumberOfReservedSlots = data.totalNumberOfReservedSlots;
+        })
+    };
+
+    $scope.updateCapacity();
+});
+
 app.config(['$routeProvider', '$controllerProvider',
     function($routeProvider, $controllerProvider) {
         // Function used to register new controllers as new partials load.
