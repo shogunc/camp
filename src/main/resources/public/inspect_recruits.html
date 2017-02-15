@@ -1,11 +1,17 @@
 <div ng-controller="inspectRecruitsCtrl">
-    <p>Here are your new recruits</p>
     <table>
+        <tr>
+            <th style="width: 50px">Id</th>
+            <th style="width: 400px">Name</th>
+            <th style="width: 50px">Level</th>
+        </tr>
         <tr ng-repeat="recruit in recruits">
+            <td>{{recruit.id}}</td>
             <td>{{recruit.name}}</td>
             <td>{{recruit.level}}</td>
-            <td>{{recruit.id}}</td>
         </tr>
     </table>
-    <a href="#/recruitment_post">Go back</a>
+    <div class="center">
+        <a href="#/recruitment_post">Go back</a>
+    </div>
 </div>

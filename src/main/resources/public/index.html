@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8" />
-    <title>Camp</title>
-</head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="/js/script.min.js"></script>
-<script src="/js/main.js"></script>
-<body ng-app="campApp">
-    <div ng-controller="FrameCtrl">
-        <strong>Units: {{totalNumberOfUnits}} Being recruited: {{totalNumberOfReservedSlots}} Capacity: {{totalNumberOfUnits + totalNumberOfReservedSlots}}/{{totalCapacity}}</strong>
-        <div ng-view></div>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Camp</title>
+    </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/js/script.min.js"></script>
+    <script src="/js/main.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styling/style.css">
+    <body ng-app="campApp">
+        <div ng-controller="MainCtrl">
+            <div class="main">
+                <div class="ticker">
+                    <strong>Units: {{totalNumberOfUnits}} Being recruited: {{totalNumberOfReservedSlots}} Capacity: {{totalNumberOfUnits + totalNumberOfReservedSlots}}/{{totalCapacity}}</strong>
+                </div>
+                <div class="view" ng-view></div>
+            </div>
+        </div>
+    </body>
 </html>

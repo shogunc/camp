@@ -1,14 +1,18 @@
 <script src="../js/recruitment_post.js"></script>
 <div ng-controller="recruitmentPostCtrl">
-    Welcome to the recruitment post!
-    Here you can recruit new troops. {{$parent.getCapacity}}
-    <div ng-if="capacity > 0 && capacity < 4">
+    <h2>Recruitment Post</h2>
+    <div class="warning" ng-if="capacity > 0 && capacity < 4">
         You do not have enough quarter space for a full recruitment. Unless you expand your capacity your next recruitment will be smaller than usual.
     </div>
-    <div ng-if="capacity === 0">
+    <div class="warning" ng-if="capacity === 0">
         You do not have any quarter space. Unless you expand your capacity you will not be able to deploy your recruiters.
     </div>
     <table>
+        <tr>
+            <th style="width: 50px">Id</th>
+            <th style="width: 270px">Status</th>
+            <th style="width: 400px">Action</th>
+        </tr>
         <tr ng-repeat="recruiter in recruiters">
             <td ng-bind="recruiter.id"></td>
             <td ng-bind="recruiter.statusMsg"></td>
@@ -19,5 +23,7 @@
             <td ng-if="capacity === 0 && recruiter.calculateStatus() == 'AVAILABLE'">Unable to recruit due to insufficient quarter space</td>
         </tr>
     </table>
-    <a href="#/">Go back</a>
+    <div class="center">
+        <a href="#/">Go back</a>
+    </div>
 </div>

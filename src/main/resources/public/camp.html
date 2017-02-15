@@ -1,8 +1,6 @@
 <script src="../js/camp.js"></script>
 <div ng-controller="campCtrl">
-    <table>
-        <tr ng-repeat="building in buildings">
-            <td><button ng-click="goToBuilding(building)">{{building.buildingType}}</button></td>
-        </tr>
-    </table>
+    <div ng-repeat="building in buildings">
+        <button ng-click="goToBuilding(building)">{{building.buildingType}}</button>
+    </div>
 </div>

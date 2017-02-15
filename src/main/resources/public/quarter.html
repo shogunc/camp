@@ -1,13 +1,19 @@
 <script src="../js/quarter.js"></script>
 <div ng-controller="quarterCtrl">
-    <p>Welcome to the quarter!</p>
-    <p>Here you can inspect your troops.</p>
+    <h2>Quarter</h2>
     <table>
+        <tr>
+            <th style="width: 50px">Id</th>
+            <th style="width: 400px">Name</th>
+            <th style="width: 50px">Level</th>
+        </tr>
         <tr ng-repeat="unit in units">
+            <td>{{unit.id}}</td>
             <td>{{unit.name}}</td>
             <td>{{unit.level}}</td>
-            <td>{{unit.id}}</td>
         </tr>
     </table>
-    <a href="#/">Go back</a>
+    <div class="center">
+        <a href="#/">Go back</a>
+    </div>
 </div>

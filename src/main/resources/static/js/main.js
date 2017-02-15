@@ -1,6 +1,6 @@
 var app = angular.module('campApp', ["ngRoute"]);
 
-app.controller('FrameCtrl', function($scope) {
+app.controller('MainCtrl', function($scope) {
     $scope.totalCapacity;
     $scope.totalNumberOfUnits;
     $scope.totalNumberOfReservedSlots;

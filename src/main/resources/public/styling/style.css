@@ -1,0 +1,73 @@
+body {
+    margin: 0;
+    font-family: Verdana, sans-serif;
+}
+
+div .main {
+    max-width: 800px;
+    min-height: 600px;
+    margin: 0 auto;
+    background-color: tan;
+}
+
+div .ticker {
+    background-color: dimgrey;
+    padding: 5px;
+}
+
+div .view {
+    padding: 5px;
+}
+
+div .center {
+    text-align: center;
+}
+
+div .warning {
+    padding: 10px;
+    background-color: #ff9800;
+    color: white;
+    margin: 10px auto;
+    font-size: small;
+    max-width: 540px;
+    border: solid 1px red;
+}
+
+h2 {
+    margin: 10px;
+}
+
+button {
+    padding: 5px;
+    margin: 5px;
+}
+
+table {
+    color: #333;
+    font-family: Helvetica, Arial, sans-serif;
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 10px auto;
+    table-layout: fixed;
+}
+
+td, th {
+    border: 1px solid transparent;
+    height: 40px;
+}
+
+th {
+    background-color: khaki;
+}
+
+td {
+    text-align: center;
+}
+
+tr:nth-child(odd) td {
+    background-color: moccasin;
+}
+
+tr:nth-child(even) td {
+    background-color: lightyellow;
+}
