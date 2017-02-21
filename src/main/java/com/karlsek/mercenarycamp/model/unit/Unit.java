@@ -27,7 +27,6 @@ public abstract class Unit {
     private Long id;
     @Column(name = "unit_type", insertable = false, updatable = false)
     String unitType;
-    String name;
     int level;
     @ElementCollection(targetClass = Tile.class)
     @CollectionTable(name = "Unit_Tile", joinColumns = @JoinColumn(name = "unit_id"))
@@ -42,6 +41,9 @@ public abstract class Unit {
     @JoinColumn(name = "fk_quarter_id")
     @JsonIgnore
     protected Quarter assignedQuarter;
+    @OneToOne
+    @JoinColumn(name = "fk_person")
+    protected Person person;
 
     public Long getId() {
         return id;
@@ -57,10 +59,6 @@ public abstract class Unit {
 
     public void setUnitType(String unitType) {
         this.unitType = unitType;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public int getLevel() {
@@ -82,4 +80,9 @@ public abstract class Unit {
     public void setBuilding(Building building) {
         this.building = building;
     }
+
+    public Person getPerson() {
+        return person;
+    }
+
 }

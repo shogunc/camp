@@ -3,6 +3,7 @@ package com.karlsek.mercenarycamp.service;
 import com.karlsek.mercenarycamp.dao.UnitDao;
 import com.karlsek.mercenarycamp.model.building.Quarter;
 import com.karlsek.mercenarycamp.model.building.recruitmentpost.Recruiter;
+import com.karlsek.mercenarycamp.model.unit.Person;
 import com.karlsek.mercenarycamp.model.unit.Recruit;
 import com.karlsek.mercenarycamp.model.unit.Unit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -23,6 +25,8 @@ public class UnitServiceImpl implements UnitService {
     private BuildingService buildingService;
     @Autowired
     private RecruiterService recruiterService;
+    @Autowired
+    private PersonService personService;
 
     @Override
     public Collection<Unit> findAll() {
@@ -36,21 +40,24 @@ public class UnitServiceImpl implements UnitService {
 
     @Override
     public Collection<Unit> recruitUnits(Recruiter recruiter) {
+        List<Unit> units = new ArrayList<>();
         List<Quarter> quarters = findAllQuartersWithReservationByRecruiter(recruiter);
-        List<Unit> units = fillReservedSlotsWithNewRecruits(recruiter, quarters);
+
+        for (Quarter quarter : quarters) {
+            units.addAll(recruitForQuarter(quarter, quarter.getReservedSlots().get(recruiter.getId())));
+        }
+
         releaseReservations(recruiter, quarters);
         recruiterService.updateStatusAfterInspection(recruiter);
         return units;
-
     }
 
-    private List<Unit> fillReservedSlotsWithNewRecruits(Recruiter recruiter, List<Quarter> quarters) {
-        List<Unit> units = new ArrayList<>();
-        for (Quarter quarter : quarters) {
-                IntStream.range(0, quarter.getReservedSlots().get(recruiter.getId()))
-                    .forEach(reservation -> units.add(unitDao.save(createRecruit(quarter))));
-        }
-        return units;
+    private List<Unit> recruitForQuarter(Quarter quarter, int numberOfSlots) {
+        List<Person> persons = personService.findUnused(numberOfSlots);
+        return IntStream.range(0, numberOfSlots)
+                .boxed()
+                .map(slot -> unitDao.save(createRecruit(quarter, persons.remove(0))))
+                .collect(Collectors.toList());
     }
 
     private List<Quarter> findAllQuartersWithReservationByRecruiter(Recruiter recruiter) {
@@ -65,9 +72,9 @@ public class UnitServiceImpl implements UnitService {
         }
     }
 
-    private Recruit createRecruit(Quarter quarter) {
+    private Recruit createRecruit(Quarter quarter, Person person) {
         return new Recruit.Builder()
-                .name("Martin Olofsson")
+                .person(person)
                 .assignedQuarter(quarter)
                 .build();
     }

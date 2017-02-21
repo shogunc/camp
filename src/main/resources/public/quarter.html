@@ -5,11 +5,13 @@
         <tr>
             <th style="width: 50px">Id</th>
             <th style="width: 400px">Name</th>
+            <th style="width: 400px">Gender</th>
             <th style="width: 50px">Level</th>
         </tr>
         <tr ng-repeat="unit in units">
             <td>{{unit.id}}</td>
-            <td>{{unit.name}}</td>
+            <td>{{unit.person.name}}</td>
+            <td>{{unit.person.gender}}</td>
             <td>{{unit.level}}</td>
         </tr>
     </table>

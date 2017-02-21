@@ -3,11 +3,13 @@
         <tr>
             <th style="width: 50px">Id</th>
             <th style="width: 400px">Name</th>
+            <th style="width: 400px">Gender</th>
             <th style="width: 50px">Level</th>
         </tr>
         <tr ng-repeat="recruit in recruits">
             <td>{{recruit.id}}</td>
-            <td>{{recruit.name}}</td>
+            <td>{{recruit.person.name}}</td>
+            <td>{{recruit.person.gender}}</td>
             <td>{{recruit.level}}</td>
         </tr>
     </table>

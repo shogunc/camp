@@ -2,7 +2,28 @@ INSERT INTO Building(building_type) VALUES ('QUARTER');
 INSERT INTO Building(building_type) VALUES ('RECRUITMENT_POST');
 INSERT INTO Building(building_type) VALUES ('NOTICE_BOARD');
 
-INSERT INTO Unit(unit_type, name, level, fk_building_id, fk_quarter_id) VALUES ('RECRUIT', 'Fillefjong', 1, 1, 1)
+--Female
+INSERT INTO Person(name, gender, unused) VALUES ('Gyra',     'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Mink',     'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Zarah',    'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Alexa',    'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Mandy',    'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Germaine', 'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Gretel',   'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Lucy',     'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Adelaide', 'FEMALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Brielle',  'FEMALE', true);
+--Male
+INSERT INTO Person(name, gender, unused) VALUES ('Blane',     'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Aven',      'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Gavin',     'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Tavis',     'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Kendall',   'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Nathanial', 'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Finnigan',  'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Elwood',    'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Crispin',   'MALE', true);
+INSERT INTO Person(name, gender, unused) VALUES ('Leighton',  'MALE', true);
 
 INSERT INTO Unit_Tile(unit_id, tile_id) VALUES (1, 'ATTACK');
 INSERT INTO Unit_Tile(unit_id, tile_id) VALUES (1, 'ATTACK_STAR');

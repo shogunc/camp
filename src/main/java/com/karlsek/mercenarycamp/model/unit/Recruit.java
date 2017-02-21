@@ -12,11 +12,11 @@ public class Recruit extends Unit {
 
     public static class Builder {
 
-        private String name;
+        private Person person;
         private Quarter assignedQuarter;
 
-        public Builder name(String name) {
-            this.name = name;
+        public Builder person(Person person) {
+            this.person = person;
             return this;
         }
 
@@ -31,7 +31,7 @@ public class Recruit extends Unit {
     }
 
     private Recruit(Builder builder) {
-        name = builder.name;
+        person = builder.person;
         level = 1;
         this.assignedQuarter = builder.assignedQuarter;
         this.building = builder.assignedQuarter;
